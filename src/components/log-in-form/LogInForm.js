@@ -5,9 +5,12 @@ import { Redirect, Route } from "react-router-dom";
 import { Input, H2, EmailInput, SimpleForm } from "./LogInFormStyle";
 import { Label } from "../common/common";
 
+
 export default function LogInform({ emailInput, setEmailInput }) {
   const [submitted, setSubmitted] = React.useState(false);
   const [currEmailInput, setCurrEmailInput] = React.useState("");
+
+
   const handleLogInSubmit = e => {
     e.preventDefault();
     setEmailInput(currEmailInput);

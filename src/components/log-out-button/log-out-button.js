@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import netlifyIdentity from "netlify-identity-widget";
+
 const ButtonStyle = styled.button`
 /* margin-left: 1%
 margin-top: 1%;
@@ -30,8 +32,11 @@ color: white;
 `;
 
 export default function LogOutButton({ setLoggedOut, setEmailInput }) {
+
+
   function logout(e) {
     window.sessionStorage.clear();
+    netlifyIdentity.logout();
     setEmailInput("");
     setLoggedOut(true);
   }

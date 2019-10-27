@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LogOutButton from "../log-out-button/log-out-button";
-
+import netlifyIdentity from 'netlify-identity-widget';
 // Styled components
 const ProfileStyle = styled.section`
   flex-direction: column;
@@ -36,6 +36,13 @@ export default function Profile({
 }) {
   const [avatar] = React.useState("assets/avatarAlien.svg");
   const [totalScore, setTotalScore] = React.useState(10);
+
+  React.useEffect(() => {
+    console.log(netlifyIdentity.currentUser().user_metadata.full_name)
+    setEmailInput(netlifyIdentity.currentUser().user_metadata.full_name)
+
+  }
+    , [])
 
   // Runs every time the data changes/page loads, update the total score
   React.useEffect(() => {
