@@ -41,11 +41,18 @@ export default function ProfilePage({
       email: window.sessionStorage.getItem("emailInput")
     });
     if (emailInput !== "") {
-      fetch(`/.netlify/functions/GetUserData?email=${userData}`)
-        // fetch(`http://localhost:9000/GetUserData?email=${userData}`)
-        .then(res => res.json())
+      // fetch(`/.netlify/functions/GetUserData?email=${userData}`)
+      console.log(`http://localhost:9000/GetUserData?email=${userData}`)
+      fetch(`http://localhost:9000/GetUserData?email=${userData}`)
         .then(res => {
+          console.log(res)
+          return res.json()
+        })
+        .then(res => {
+          console.log('printing res', res);
           if (res.records) {
+            console.log('printing res.records')
+            console.log(res.records)
             let notAddedStarterActivity = true;
             const filteredRecords = [];
 
