@@ -41,9 +41,8 @@ export default function ProfilePage({
       email: window.sessionStorage.getItem("emailInput")
     });
     if (emailInput !== "") {
+      // fetch(`http://localhost:9000/GetUserData?email=${userData}`)
       fetch(`/.netlify/functions/GetUserData?email=${userData}`)
-      console.log(`http://localhost:9000/GetUserData?email=${userData}`)
-        // fetch(`http://localhost:9000/GetUserData?email=${userData}`)
         .then(res => {
           console.log(res)
           return res.json()
