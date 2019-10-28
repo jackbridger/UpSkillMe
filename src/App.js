@@ -8,30 +8,56 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import netlifyIdentity from 'netlify-identity-widget'
 
 netlifyIdentity.init();
+netlifyIdentity.on('login', user => {
+  console.log(user.email)
+  netlifyIdentity.close();
+});
+
 
 function App() {
   const [data, setData] = React.useState([]);
   const [emailInput, setEmailInput] = React.useState("");
   const [opportunities, setOpportunities] = React.useState([]);
 
+  netlifyIdentity.on('login', user => {
+    setEmailInput(user.email);
+  });
+  // netlifyIdentity.on('signup', user => {
+  //   setEmailInput(user.email);
+  // });
+
+  netlifyIdentity.on('logout', user => {
+    setEmailInput("");
+    netlifyIdentity.close();
+  });
 
   return (
     <Router>
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <LandingPage
-              emailInput={emailInput}
-              setEmailInput={setEmailInput}
-            />
-          </Route>
-          <Route path="/profile">
-            <ProfilePage
+            {netlifyIdentity.currentUser() ? <ProfilePage
               data={data}
               setData={setData}
               setEmailInput={setEmailInput}
               emailInput={emailInput}
-            />
+            /> : <LandingPage
+                emailInput={emailInput}
+                setEmailInput={setEmailInput}
+              />}
+
+          </Route>
+          <Route path="/profile">
+            {netlifyIdentity.currentUser() ? <ProfilePage
+              data={data}
+              setData={setData}
+              setEmailInput={setEmailInput}
+              emailInput={emailInput}
+            /> : <LandingPage
+                emailInput={emailInput}
+                setEmailInput={setEmailInput}
+              />}
+
           </Route>
           <Route path="/opportunities">
             <OpportunitiesPage

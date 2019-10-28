@@ -12,7 +12,7 @@ export default function SignUpForm({ emailInput, setEmailInput }) {
   const handleSignUpSubmit = e => {
     e.preventDefault();
     setNewUser(true);
-    setEmailInput(currSubmittedEmail);
+    // setEmailInput(currSubmittedEmail);
   };
 
   React.useEffect(() => {
