@@ -5,11 +5,15 @@ import ProfilePage from "./pages/ProfilePage";
 import OpportunitiesPage from "./pages/OpportunitiesPage";
 import FourZeroFour from "./pages/FourZeroFour";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import netlifyIdentity from 'netlify-identity-widget'
+
+netlifyIdentity.init();
 
 function App() {
   const [data, setData] = React.useState([]);
   const [emailInput, setEmailInput] = React.useState("");
   const [opportunities, setOpportunities] = React.useState([]);
+
 
   return (
     <Router>
