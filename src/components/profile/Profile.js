@@ -39,7 +39,8 @@ export default function Profile({
 
   React.useEffect(() => {
     console.log(netlifyIdentity.currentUser().user_metadata.full_name)
-    setEmailInput(netlifyIdentity.currentUser().user_metadata.full_name)
+    // setEmailInput(`${netlifyIdentity.currentUser().user_metadata.full_name}@gmail.com`)
+    setEmailInput('joe.bloggs@arkacademy.ac.uk')
 
   }
     , [])

@@ -10,13 +10,15 @@ import LogOutButton from "../components/log-out-button/log-out-button";
 import OpportunitiesButton from "../components/opportunities-button/OpportunitiesButton";
 import { Redirect, Route } from "react-router-dom";
 import { Navbar } from "../components/common/common";
+import netlifyIdentity from 'netlify-identity-widget'
 export default function ProfilePage({
   setData,
   data,
   emailInput,
   setEmailInput
 }) {
-  setEmailInput(window.sessionStorage.getItem("emailInput", emailInput));
+  // setEmailInput(window.sessionStorage.getItem("emailInput", emailInput));
+  // setEmailInput(`${netlifyIdentity.currentUser().user_metadata.full_name}@gmail.com`)
   const [dataRefresh, setDataRefresh] = React.useState(true);
   const [loggedOut, setLoggedOut] = React.useState(false);
   const [isFormDisplayed, setFormDisplayed] = React.useState("none");
@@ -41,8 +43,8 @@ export default function ProfilePage({
       email: window.sessionStorage.getItem("emailInput")
     });
     if (emailInput !== "") {
-      fetch(`/.netlify/functions/GetUserData?email=${userData}`)
-        // fetch(`http://localhost:9000/GetUserData?email=${userData}`)
+      // fetch(`/.netlify/functions/GetUserData?email=${userData}`)
+      fetch(`http://localhost:9000/GetUserData?email=${userData}`)
         .then(res => res.json())
         .then(res => {
           if (res.records) {

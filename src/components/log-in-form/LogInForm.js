@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { Redirect, Route } from "react-router-dom";
 import { Input, H2, EmailInput, SimpleForm } from "./LogInFormStyle";
 import { Label } from "../common/common";
-
+import netlifyIdentity from 'netlify-identity-widget'
 
 export default function LogInform({ emailInput, setEmailInput }) {
   const [submitted, setSubmitted] = React.useState(false);
@@ -13,7 +13,9 @@ export default function LogInform({ emailInput, setEmailInput }) {
 
   const handleLogInSubmit = e => {
     e.preventDefault();
-    setEmailInput(currEmailInput);
+    // setEmailInput(currEmailInput);
+    // setEmailInput(`${netlifyIdentity.currentUser().user_metadata.full_name}@gmail.com`)
+    setEmailInput('joe.bloggs@arkacademy.ac.uk')
     setSubmitted(true);
   };
 
