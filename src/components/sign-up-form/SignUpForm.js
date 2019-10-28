@@ -23,14 +23,14 @@ export default function SignUpForm({ emailInput, setEmailInput }) {
           {
             fields: {
               nameOfActivity: "My first activity",
-              activityType: ["recbt3yRDLY9GjPc2"],
+              activityType: ["recydjSRey1ama1St"],
               // fix this - not sure why it's a month behind!
               date: `${(today.getMonth() + 1) %
                 12}-${today.getDate()}-${today.getFullYear()}`,
               durationHours: 0,
               link: "",
               schoolEmail: emailInput,
-              skills: ["rec1aXpu34QFpVnDc"]
+              skills: ["recx5DLWSk0oqb0uC"]
             }
           }
         ]

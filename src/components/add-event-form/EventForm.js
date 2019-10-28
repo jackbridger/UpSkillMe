@@ -176,7 +176,8 @@ export default function EventForm({
       ]
     });
     fetch(
-      `/.netlify/functions/CreateUserActivity?activityData=${submittedData}`
+      // `/.netlify/functions/CreateUserActivity?activityData=${submittedData}`
+      `http://localhost:9000/GetUserData??activityData=${submittedData}`
     )
       .then(res => res.json())
       .then(res => {
