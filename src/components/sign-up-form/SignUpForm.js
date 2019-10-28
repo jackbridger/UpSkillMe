@@ -4,6 +4,7 @@ import { H2, Input, EmailInput, SimpleForm } from "./SignUpFormStyle";
 import { ThemeProvider } from "styled-components";
 import { Label } from "../common/common";
 import theme from "../../theme";
+import netlifyIdentity from 'netlify-identity-widget';
 
 export default function SignUpForm({ emailInput, setEmailInput }) {
   const [currSubmittedEmail, setCurrSubmittedEmail] = React.useState("");
@@ -29,7 +30,7 @@ export default function SignUpForm({ emailInput, setEmailInput }) {
                 12}-${today.getDate()}-${today.getFullYear()}`,
               durationHours: 0,
               link: "",
-              schoolEmail: emailInput,
+              schoolEmail: netlifyIdentity.currentUser().email,
               skills: ["recbl3IVKZt3N5fu1"]
             }
           }
