@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import LogOutButton from "../log-out-button/log-out-button";
-
+import netlifyIdentity from 'netlify-identity-widget';
 // Styled components
 const ProfileStyle = styled.section`
   flex-direction: column;
@@ -52,11 +52,10 @@ export default function Profile({
   if (!data) {
     return <p>Loading</p>;
   }
-
   return (
     <ProfileStyle>
       <img src={avatar} alt="this is our avatar pic" width="200px" />
-      <EmailStyle>{emailInput}</EmailStyle>
+      <EmailStyle>{netlifyIdentity.currentUser().user_metadata.full_name}</EmailStyle>
       <ColoredLine></ColoredLine>
       <PointsStyle>{totalScore} total points</PointsStyle>
     </ProfileStyle>
