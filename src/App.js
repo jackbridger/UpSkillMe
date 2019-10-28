@@ -20,10 +20,11 @@ function App() {
   const [opportunities, setOpportunities] = React.useState([]);
 
   netlifyIdentity.on('login', user => {
+    console.log(user)
     setEmailInput(user.email);
   });
-  // netlifyIdentity.on('signup', user => {
-  //   setEmailInput(user.email);
+  // netlifyIdentity.on('init', user => {
+  //   console.log('signup event')
   // });
 
   netlifyIdentity.on('logout', user => {

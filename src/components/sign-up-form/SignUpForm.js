@@ -17,7 +17,7 @@ export default function SignUpForm({ emailInput, setEmailInput }) {
   };
 
   React.useEffect(() => {
-    if (netlifyIdentity.currentUser()) {
+    if (emailInput && newUser) {
       const today = new Date();
       const submittedData = JSON.stringify({
         records: [

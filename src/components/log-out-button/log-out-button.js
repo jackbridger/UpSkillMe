@@ -34,7 +34,7 @@ export default function LogOutButton({ setLoggedOut, setEmailInput }) {
   function logout(e) {
     netlifyIdentity.logout()
     window.sessionStorage.clear();
-    // setEmailInput("");
+    setEmailInput("");
     setLoggedOut(true);
   }
 
