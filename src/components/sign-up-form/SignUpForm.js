@@ -23,20 +23,21 @@ export default function SignUpForm({ emailInput, setEmailInput }) {
           {
             fields: {
               nameOfActivity: "My first activity",
-              activityType: ["recydjSRey1ama1St"],
+              activityType: ["recmCPdh5DvsNXBXa"],
               // fix this - not sure why it's a month behind!
               date: `${(today.getMonth() + 1) %
                 12}-${today.getDate()}-${today.getFullYear()}`,
               durationHours: 0,
               link: "",
               schoolEmail: emailInput,
-              skills: ["recx5DLWSk0oqb0uC"]
+              skills: ["recbl3IVKZt3N5fu1"]
             }
           }
         ]
       });
       fetch(
-        `/.netlify/functions/CreateUserActivity?activityData=${submittedData}`
+        // `/.netlify/functions/CreateUserActivity?activityData=${submittedData}`
+        `http://localhost:9000/CreateUserActivity?activityData=${submittedData}`
       )
         .then(res => res.json())
         .then(res => {
