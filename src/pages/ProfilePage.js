@@ -16,7 +16,7 @@ export default function ProfilePage({
   emailInput,
   setEmailInput
 }) {
-  setEmailInput(window.sessionStorage.getItem("emailInput", emailInput));
+  // setEmailInput(window.sessionStorage.getItem("emailInput", emailInput));
   const [dataRefresh, setDataRefresh] = React.useState(true);
   const [loggedOut, setLoggedOut] = React.useState(false);
   const [isFormDisplayed, setFormDisplayed] = React.useState("none");
@@ -41,11 +41,15 @@ export default function ProfilePage({
       email: window.sessionStorage.getItem("emailInput")
     });
     if (emailInput !== "") {
+      // fetch(`http://localhost:9000/GetUserData?email=${userData}`)
       fetch(`/.netlify/functions/GetUserData?email=${userData}`)
-        // fetch(`http://localhost:9000/GetUserData?email=${userData}`)
-        .then(res => res.json())
         .then(res => {
+          return res.json()
+        })
+        .then(res => {
+          console.log('printing res', res);
           if (res.records) {
+
             let notAddedStarterActivity = true;
             const filteredRecords = [];
 
@@ -76,14 +80,6 @@ export default function ProfilePage({
         });
     }
   }, [dataRefresh, emailInput]);
-
-  if (loggedOut) {
-    return (
-      <Route>
-        <Redirect to={{ pathname: "/" }} />
-      </Route>
-    );
-  }
 
   return (
     <div>

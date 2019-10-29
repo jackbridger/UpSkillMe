@@ -105,7 +105,7 @@ export default function EventForm({
 
   //Initialising activity type with the an array containing
   //the id of after school club. Default value is legitimate value.
-  const [activityType, setActivityType] = React.useState(["recbt3yRDLY9GjPc2"]);
+  const [activityType, setActivityType] = React.useState(["recmCPdh5DvsNXBXa"]);
   const activityOptions = [
     "After school club",
     "Careers workshop",
@@ -177,6 +177,7 @@ export default function EventForm({
     });
     fetch(
       `/.netlify/functions/CreateUserActivity?activityData=${submittedData}`
+      // `http://localhost:9000/CreateUserActivity?activityData=${submittedData}`
     )
       .then(res => res.json())
       .then(res => {

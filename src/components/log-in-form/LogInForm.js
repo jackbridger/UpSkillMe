@@ -10,7 +10,7 @@ export default function LogInform({ emailInput, setEmailInput }) {
   const [currEmailInput, setCurrEmailInput] = React.useState("");
   const handleLogInSubmit = e => {
     e.preventDefault();
-    setEmailInput(currEmailInput);
+    // setEmailInput(currEmailInput);
     setSubmitted(true);
   };
 

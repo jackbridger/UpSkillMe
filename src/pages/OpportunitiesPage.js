@@ -26,13 +26,6 @@ export default function OpportunitiesPage({
       });
   }, []);
 
-  if (loggedOut) {
-    return (
-      <Route>
-        <Redirect to={{ pathname: "/" }} />
-      </Route>
-    );
-  }
 
   return (
     <div>

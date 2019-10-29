@@ -4,6 +4,7 @@ import { H2, Input, EmailInput, SimpleForm } from "./SignUpFormStyle";
 import { ThemeProvider } from "styled-components";
 import { Label } from "../common/common";
 import theme from "../../theme";
+import netlifyIdentity from 'netlify-identity-widget';
 
 export default function SignUpForm({ emailInput, setEmailInput }) {
   const [currSubmittedEmail, setCurrSubmittedEmail] = React.useState("");
@@ -12,7 +13,7 @@ export default function SignUpForm({ emailInput, setEmailInput }) {
   const handleSignUpSubmit = e => {
     e.preventDefault();
     setNewUser(true);
-    setEmailInput(currSubmittedEmail);
+    // setEmailInput(currSubmittedEmail);
   };
 
   React.useEffect(() => {
@@ -23,20 +24,21 @@ export default function SignUpForm({ emailInput, setEmailInput }) {
           {
             fields: {
               nameOfActivity: "My first activity",
-              activityType: ["recbt3yRDLY9GjPc2"],
+              activityType: ["recmCPdh5DvsNXBXa"],
               // fix this - not sure why it's a month behind!
               date: `${(today.getMonth() + 1) %
                 12}-${today.getDate()}-${today.getFullYear()}`,
               durationHours: 0,
               link: "",
-              schoolEmail: emailInput,
-              skills: ["rec1aXpu34QFpVnDc"]
+              schoolEmail: netlifyIdentity.currentUser().email,
+              skills: ["recbl3IVKZt3N5fu1"]
             }
           }
         ]
       });
       fetch(
-        `/.netlify/functions/CreateUserActivity?activityData=${submittedData}`
+        // `/.netlify/functions/CreateUserActivity?activityData=${submittedData}`
+        `http://localhost:9000/CreateUserActivity?activityData=${submittedData}`
       )
         .then(res => res.json())
         .then(res => {
