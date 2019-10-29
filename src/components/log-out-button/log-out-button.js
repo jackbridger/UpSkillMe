@@ -9,7 +9,7 @@ color: white;
 
 `;
 
-export default function LogOutButton({ setLoggedOut, setEmailInput }) {
+export default function LogOutButton({ setEmailInput }) {
   function logout(e) {
     if (netlifyIdentity.currentUser()) {
       netlifyIdentity.logout()

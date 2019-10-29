@@ -10,7 +10,6 @@ export default function OpportunitiesPage({
   setOpportunities,
   setEmailInput
 }) {
-  const [loggedOut, setLoggedOut] = React.useState(false);
 
   React.useEffect(() => {
     fetch(`/.netlify/functions/GetOpportunitiesData`)
@@ -30,7 +29,7 @@ export default function OpportunitiesPage({
   return (
     <div>
       <Navbar>
-        <LogOutButton setLoggedOut={setLoggedOut} setEmailInput={setEmailInput} />
+        <LogOutButton setEmailInput={setEmailInput} />
         <BackButton></BackButton>
       </Navbar>
       <OpportunitiesList opportunities={opportunities} />
