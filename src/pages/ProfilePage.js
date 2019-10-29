@@ -81,14 +81,6 @@ export default function ProfilePage({
     }
   }, [dataRefresh, emailInput]);
 
-  if (loggedOut) {
-    return (
-      <Route>
-        <Redirect to={{ pathname: "/" }} />
-      </Route>
-    );
-  }
-
   return (
     <div>
       <Navbar>

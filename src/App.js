@@ -23,9 +23,7 @@ function App() {
     console.log(user)
     setEmailInput(user.email);
   });
-  // netlifyIdentity.on('init', user => {
-  //   console.log('signup event')
-  // });
+
 
   netlifyIdentity.on('logout', user => {
     setEmailInput("");
