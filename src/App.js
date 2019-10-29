@@ -4,7 +4,7 @@ import LandingPage from "./pages/LandingPage";
 import ProfilePage from "./pages/ProfilePage";
 import OpportunitiesPage from "./pages/OpportunitiesPage";
 import FourZeroFour from "./pages/FourZeroFour";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import netlifyIdentity from 'netlify-identity-widget'
 
 netlifyIdentity.init();
@@ -37,29 +37,23 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            {netlifyIdentity.currentUser() ? <ProfilePage
-              data={data}
-              setData={setData}
-              setEmailInput={setEmailInput}
+            {netlifyIdentity.currentUser() ? <Redirect to="/profile" /> : <LandingPage
               emailInput={emailInput}
-            /> : <LandingPage
-                emailInput={emailInput}
-                setEmailInput={setEmailInput}
-              />}
-
+              setEmailInput={setEmailInput}
+            />
+            }
           </Route>
           <Route path="/profile">
-            {netlifyIdentity.currentUser() ? <ProfilePage
-              data={data}
-              setData={setData}
-              setEmailInput={setEmailInput}
-              emailInput={emailInput}
-            /> : <LandingPage
-                emailInput={emailInput}
+            {netlifyIdentity.currentUser() ?
+              <ProfilePage
+                data={data}
+                setData={setData}
                 setEmailInput={setEmailInput}
-              />}
-
+                emailInput={emailInput}
+              /> :
+              <Redirect to="/" />}
           </Route>
+
           <Route path="/opportunities">
             <OpportunitiesPage
               opportunities={opportunities}
