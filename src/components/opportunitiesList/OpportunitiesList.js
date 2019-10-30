@@ -4,8 +4,8 @@ import { ThemeProvider } from "styled-components";
 import theme from "../../theme";
 // import LogOutButton from "../../components/log-out-button/log-out-button";
 
-import{
-  H2, 
+import {
+  H2,
   H3
 } from "./OpportunitiesList.style";
 
@@ -16,7 +16,6 @@ export default function OpportunitiesList({ opportunities }) {
 
   return (
     <div>
-      {/* <LogOutButton setLoggedOut={setLoggedOut} setEmailInput={setEmailInput} /> */}
       <H2>Opportunities List</H2>
       <H3>
         Displaying {opportunities.length} of {opportunities.length}

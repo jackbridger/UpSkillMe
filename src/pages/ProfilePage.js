@@ -10,15 +10,15 @@ import LogOutButton from "../components/log-out-button/log-out-button";
 import OpportunitiesButton from "../components/opportunities-button/OpportunitiesButton";
 import { Redirect, Route } from "react-router-dom";
 import { Navbar } from "../components/common/common";
+import netlifyIdentity from "netlify-identity-widget"
+
 export default function ProfilePage({
   setData,
   data,
   emailInput,
   setEmailInput
 }) {
-  // setEmailInput(window.sessionStorage.getItem("emailInput", emailInput));
   const [dataRefresh, setDataRefresh] = React.useState(true);
-  const [loggedOut, setLoggedOut] = React.useState(false);
   const [isFormDisplayed, setFormDisplayed] = React.useState("none");
   const [activityButtonDisplay, setActivityButtonDisplay] = React.useState(
     "block"
@@ -33,19 +33,21 @@ export default function ProfilePage({
   // is added
 
   React.useEffect(() => {
-    if (!window.sessionStorage.getItem("emailInput")) {
-      window.sessionStorage.setItem("emailInput", emailInput);
-    }
+    console.log("email input is", emailInput);
+    console.log("dev variable is", process.env.API_KEY);
 
-    const userData = JSON.stringify({
-      email: window.sessionStorage.getItem("emailInput")
-    });
-    if (emailInput !== "") {
-      // fetch(`http://localhost:9000/GetUserData?email=${userData}`)
-      fetch(`/.netlify/functions/GetUserData?email=${userData}`)
+    if (netlifyIdentity.currentUser().email) {
+      // let URLCall = process.env.DEV ?
+      //   `http://localhost:9000/GetUserData?email=${emailInput}`
+      //   : `/.netlify/functions/GetUserData?email=${emailInput}`
+      console.log(`http://localhost:9000/GetUserData?email=${netlifyIdentity.currentUser().email}`);
+      fetch(`http://localhost:9000/GetUserData?email="${netlifyIdentity.currentUser().email}"`)
         .then(res => {
           return res.json()
         })
+        // .then(res => {
+        //   return res
+        // })
         .then(res => {
           console.log('printing res', res);
           if (res.records) {
@@ -85,7 +87,6 @@ export default function ProfilePage({
     <div>
       <Navbar>
         <LogOutButton
-          setLoggedOut={setLoggedOut}
           setEmailInput={setEmailInput}
         />
         <OpportunitiesButton />
@@ -93,7 +94,6 @@ export default function ProfilePage({
       <Profile
         data={data}
         emailInput={emailInput}
-        setLoggedOut={setLoggedOut}
         setEmailInput={setEmailInput}
       />
 

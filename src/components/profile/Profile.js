@@ -31,7 +31,6 @@ const ColoredLine = styled.hr`
 export default function Profile({
   data,
   emailInput,
-  setLoggedOut,
   setEmailInput
 }) {
   const [avatar] = React.useState("assets/avatarAlien.svg");

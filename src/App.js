@@ -9,10 +9,12 @@ import netlifyIdentity from 'netlify-identity-widget'
 
 netlifyIdentity.init();
 netlifyIdentity.on('login', user => {
-  console.log(user.email)
   netlifyIdentity.close();
 });
 
+netlifyIdentity.on('init', user => {
+  console.log(user)
+});
 
 function App() {
   const [data, setData] = React.useState([]);
@@ -20,8 +22,9 @@ function App() {
   const [opportunities, setOpportunities] = React.useState([]);
 
   netlifyIdentity.on('login', user => {
-    console.log(user)
+
     setEmailInput(user.email);
+    console.log("email input is", emailInput);
   });
 
 
